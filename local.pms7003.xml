@@ -1,0 +1,59 @@
+<node>
+	<interface name="local.pms7003">
+		<!--
+		set_state:
+		@state: The new state that device should enter.
+
+		Possible values are:
+			0 (SLEEP)
+				Device does not collect measurements.
+
+			1 (PASSIVE)
+				Device does measurement on receiving a read
+				command.
+
+			2 (ACTIVE)
+				Device does measurements continously. Every
+				time new data is measured signal is emitted.
+				Doing normal reads is possible as well.
+
+		Possible errors: local.pms7003.Error.InvalidArguments
+		-->
+		<method name="set_state">
+			<arg type="u" name="state" direction="in"/>
+		</method>
+		<!--
+		read: Get measurements from the sensor.
+		@data: Array of 12 measurements.
+
+		data[0]: pm1.0 cf1 [ug / m3]
+		data[1]: pm2.5 cf1 [ug / m3]
+		data[2]: pm10 cf1 [ug / m3]
+		data[3]: pm1.0 std [ug / m3]
+		data[4]: pm2.5 std [ug / m3]
+		data[5]: pm10 std [ug / m3]
+		data[6]: over 0.3um [1 / 0.1L]
+		data[7]: over 0.5um [1 / 0.1L]
+		data[8]: over 1um [1 / 0.1L]
+		data[9]: over 2.5um [1 / 0.1L]
+		data[10]: over 5um [1 / 0.1L]
+		data[11]: over 10um [1 / 0.1L]
+
+		Possible errors: local.pms7003.Error.IO
+		-->
+		<method name="read">
+			<arg type="aq" name="data" direction="out"/>
+		</method>
+		<!--
+		new_data: Signal emitted whenever fresh data arrives.
+		@data: Array of 12 measurements.
+		-->
+		<signal name="new_data">
+		<arg type="aq" name="data"/>
+		</signal>
+		<!--
+		state: The current state device is operating in.
+		-->
+		<property name="state" type="u" access="read"/>
+	</interface>
+</node>

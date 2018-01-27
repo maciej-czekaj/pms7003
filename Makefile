@@ -1,5 +1,5 @@
 all:
-	gdbus-codegen --interface-prefix local. \
+	@gdbus-codegen --interface-prefix local. \
 		--generate-c-code pms7003-generated \
 		local.pms7003.xml
 	@gcc -g3 pms7003.c pms7003-generated.c \

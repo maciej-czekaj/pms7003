@@ -115,7 +115,7 @@ static void usage(const char *name)
 	printf("  -p device path\n");
 	printf("  -d run as daemon\n");
 	printf("  -v dump measurements\n");
-	printf("  -s set initial state (0 - sleep, 1 - active, 2 - passive)\n");
+	printf("  -s set initial state (0 - sleep, 1 - passive, 2 - active)\n");
 	printf("\n");
 }
 
